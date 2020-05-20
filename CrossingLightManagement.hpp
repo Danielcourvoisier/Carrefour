@@ -61,7 +61,7 @@ void CrossingLightManagement::detecter() {
     while (true) {
         std::this_thread::sleep_for(std::chrono::milliseconds(300));
 
-        if ((state == 0) && (aFirst) && (course1->getDetect() > 0)){
+        if ((state == 0) && (aFirst) && (course1->getDetect() > 0)) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 0 : FLUX A détecté -> FEU B imposé à ROUGE \n"  << endl;
             crossingLight[1].update("R");
@@ -69,7 +69,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 0) && (aFirst) && ((!course1->getDetect()) > 0)){
+        if ((state == 0) && (aFirst) && ((!course1->getDetect()) > 0)) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 0 : FLUX A pas détecté -> On bascule \n"  << endl;
             crossingLight[1].update("R");
@@ -78,7 +78,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 0) && (bFirst) && ((!course2->getDetect()) > 0)){
+        if ((state == 0) && (bFirst) && ((!course2->getDetect()) > 0)) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 0 : FLUX B pas détecté -> On bascule \n"  << endl;
             crossingLight[1].update("R");
@@ -87,7 +87,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 1) && (!crossroads->get_occupation())){
+        if ((state == 1) && (!crossroads->get_occupation())) {
             displayLock.lock();
             crossingLight[0].update("V");
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 1:  FLUX B bloqué et on libère FLUX A ->  FEU A imposé à VERT \n"  << endl;
@@ -96,7 +96,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 2) && (!crossroads->get_occupation()) && (!course1->getDetect())){
+        if ((state == 2) && (!crossroads->get_occupation()) && (!course1->getDetect())) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 2: FLUX A tari -> on revient à l'état d'attente\n" << endl;
             state=0;
@@ -105,7 +105,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 0) && (bFirst) && (course2->getDetect() > 0)){
+        if ((state == 0) && (bFirst) && (course2->getDetect() > 0)) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 0: FLUX B détecté -> FEU A imposé à ROUGE \n"  << endl;
             crossingLight[0].update("R");
@@ -113,7 +113,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 3) && (!crossroads->get_occupation())){
+        if ((state == 3) && (!crossroads->get_occupation())) {
             displayLock.lock();
             crossingLight[1].update("V");
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 3: FLUX A bloqué et on libère FLUX B -> FEU B imposé à VERT \n"  << endl;
@@ -122,7 +122,7 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
-        if ((state == 4) && (!crossroads->get_occupation()) && (!course2->getDetect())){
+        if ((state == 4) && (!crossroads->get_occupation()) && (!course2->getDetect())) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 4: FLUX B tari -> on revient à l'état d'attente\n" << endl;
             state=0;

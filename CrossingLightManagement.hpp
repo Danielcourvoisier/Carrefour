@@ -11,7 +11,7 @@
 #include <iostream>
 #include "Global.hpp"
 #include "Course.hpp"
-#include "CrossingLight.hpp"
+#include "TrafficLight.hpp"
 #include "Crossroads.hpp"
 
 // Variables globales
@@ -23,13 +23,13 @@ class CrossingLightManagement {
 private:
     Course *course1;
     Course *course2;
-    CrossingLight *crossingLight;
+    TrafficLight *crossingLight;
     Crossroads *crossroads;
     int state;
     thread thd;
 
 public:
-    CrossingLightManagement(Course* C1, Course* C2, CrossingLight* CL, Crossroads* CR);
+    CrossingLightManagement(Course* C1, Course* C2, TrafficLight* CL, Crossroads* CR);
     ~CrossingLightManagement();
 
     [[noreturn]] void detecter();
@@ -37,7 +37,7 @@ public:
 
 
 // Constructeur
-CrossingLightManagement::CrossingLightManagement(Course *C1, Course *C2, CrossingLight *CL, Crossroads *CR) {
+CrossingLightManagement::CrossingLightManagement(Course *C1, Course *C2, TrafficLight *CL, Crossroads *CR) {
     course1 = C1;
     course2 = C2;
     crossingLight = CL,

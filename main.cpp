@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Timer.hpp"
 #include "Course.hpp"
-#include "CrossingLight.hpp"
+#include "TrafficLight.hpp"
 #include "CrossingLightManagement.hpp"
 #include "CarFlow.hpp"
 
@@ -20,7 +20,7 @@ int main() {
     Course course_2(1, &crossroads); // orientation West-Est
 
     // Instanciation de feu
-    CrossingLight crossingLights[2];
+    TrafficLight crossingLights[2];
 
     // Instanciation gestion du feux
     CrossingLightManagement crossingLightManagement(&course_1, &course_2, crossingLights, &crossroads);

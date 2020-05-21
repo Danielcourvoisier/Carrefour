@@ -6,10 +6,10 @@
 #define CARREFOUR_GLOBAL_HPP
 
 #include <mutex>
-#include "CrossingLight.hpp"
+#include "TrafficLight.hpp"
 
 // Variables constantes
-//CrossingLight feuX[2];  // attention
+//TrafficLight feuX[2];  // attention
 bool inActivity = true;
 
 // Mutex globaux

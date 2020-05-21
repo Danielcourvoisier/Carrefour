@@ -2,8 +2,8 @@
 // Created by Daniel Courvoisier on 14.05.20.
 //
 
-#ifndef CARREFOUR_CROSSINGLIGHT_HPP
-#define CARREFOUR_CROSSINGLIGHT_HPP
+#ifndef CARREFOUR_TRAFFICLIGHT_HPP
+#define CARREFOUR_TRAFFICLIGHT_HPP
 
 #include <string>
 #include <iostream>
@@ -17,26 +17,26 @@ using namespace std;
 extern std::mutex displayLock;
 
 
-// Classe CrossingLight
-class CrossingLight {
+// Classe TrafficLight
+class TrafficLight {
 private:
     string color;
 
 public:
-    CrossingLight();
+    TrafficLight();
     void update(string new_color);
     string getCouleur();
 };
 
 
 // Constructeur
-CrossingLight::CrossingLight() {
+TrafficLight::TrafficLight() {
     color = "R";
 }
 
 
 // Mise à jour état feu
-void CrossingLight::update(string new_color){
+void TrafficLight::update(string new_color){
     displayLock.lock();
     cout << "Mise à jour de l'état du feu : "<< new_color << endl;
     displayLock.unlock();
@@ -45,8 +45,8 @@ void CrossingLight::update(string new_color){
 
 
 // Retourne état feu
-string CrossingLight::getCouleur() {
+string TrafficLight::getCouleur() {
     return color;
 }
 
-#endif //CARREFOUR_CROSSINGLIGHT_HPP
+#endif //CARREFOUR_TRAFFICLIGHT_HPP

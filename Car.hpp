@@ -9,7 +9,7 @@
 #include <thread>
 #include "Global.hpp"
 #include "Course.hpp"
-#include "CrossingLight.hpp"
+#include "TrafficLight.hpp"
 
 // Variables globales
 extern std::mutex displayLock;
@@ -22,16 +22,16 @@ private:
     int orientation;
     Course* course;
     int position;
-    CrossingLight *crossingLight;
+    TrafficLight *crossingLight;
 
 public:
-    Car(string nom, int carOrientation, Course * CX, CrossingLight *CL);
+    Car(string nom, int carOrientation, Course * CX, TrafficLight *CL);
     void drive();
 };
 
 
 // Constructeur
-Car::Car(string nom, int carOrientation, Course * CX, CrossingLight *CL) {
+Car::Car(string nom, int carOrientation, Course * CX, TrafficLight *CL) {
     name = nom;
     orientation = carOrientation;
     course = CX;

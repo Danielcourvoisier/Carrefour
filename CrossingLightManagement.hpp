@@ -87,24 +87,27 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
+        // Après que le flux A soit détecté et le feu B imposé à rouge, et si le carrefour est vide, alors on passe le feu à vert pour le flux A
         if ((state == 1) && (!crossroads->get_occupation())) {
             displayLock.lock();
-            crossingLight[0].update("V");
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 1:  FLUX B bloqué et on libère FLUX A ->  FEU A imposé à VERT \n"  << endl;
+            crossingLight[0].update("V");
             state = 2;
-            CV[0].notify_all();
+            CV[0].notify_all();                     // Que fait-il?
             displayLock.unlock();
         } else
 
+        // Si le flux A est passé au vert, et que le carrefour n'est plus occuper, et que le parcours 1 (Flux A) est détecté -> état attente
         if ((state == 2) && (!crossroads->get_occupation()) && (!course1->getDetect())) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 2: FLUX A tari -> on revient à l'état d'attente\n" << endl;
-            state=0;
+            state = 0;
             aFirst = false;
-            bFirst=true;
+            bFirst = true;
             displayLock.unlock();
         } else
 
+        // Si flux B détecté, le feu A est imposé à rouge
         if ((state == 0) && (bFirst) && (course2->getDetect() > 0)) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 0: FLUX B détecté -> FEU A imposé à ROUGE \n"  << endl;
@@ -113,19 +116,21 @@ void CrossingLightManagement::detecter() {
             displayLock.unlock();
         } else
 
+        // Si flux B détecté, Feu A est au rouge, et que le carrefour est libre, alors feu du flux B passe au vert
         if ((state == 3) && (!crossroads->get_occupation())) {
             displayLock.lock();
-            crossingLight[1].update("V");
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 3: FLUX A bloqué et on libère FLUX B -> FEU B imposé à VERT \n"  << endl;
-            state=4;
+            crossingLight[1].update("V");
+            state = 4;
             CV[1].notify_all();
             displayLock.unlock();
         } else
 
+        // Si le flux B a pu passer dans le carrefour, et qu'il n'est plus occuper, alors en revient en état d'attente
         if ((state == 4) && (!crossroads->get_occupation()) && (!course2->getDetect())) {
             displayLock.lock();
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 4: FLUX B tari -> on revient à l'état d'attente\n" << endl;
-            state=0;
+            state = 0;
             aFirst = true;
             bFirst = false;
             displayLock.unlock();

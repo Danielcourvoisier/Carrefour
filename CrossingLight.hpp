@@ -31,7 +31,7 @@ public:
 
 // Constructeur
 CrossingLight::CrossingLight() {
-    color="R";
+    color = "R";
 }
 
 

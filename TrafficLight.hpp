@@ -37,7 +37,7 @@ TrafficLight::TrafficLight() {
 
 // Mise à jour état feu
 void TrafficLight::update(string new_color){
-    displayLock.lock();
+    displayLock.lock();                 // deadlock voir recusrive mutex
     cout << "Mise à jour de l'état du feu : "<< new_color << endl;
     displayLock.unlock();
     color = new_color;

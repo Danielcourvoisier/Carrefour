@@ -9,13 +9,12 @@
 #include "TrafficLight.hpp"
 
 // Variables constantes
-//TrafficLight feuX[2];  // attention
-bool inActivity = true;
+//bool inActivity = true;
 
 // Mutex globaux
-std::mutex displayLock;     // recursive mutex???
+recursive_mutex displayLock;
 std::mutex arret_carrefour;
 std::mutex verrou_parcours;
-std::condition_variable CV[2]; // changer nom
+std::condition_variable CV[2]; // changer nom lors de l'implémentation
 
 #endif //CARREFOUR_GLOBAL_HPP

@@ -45,34 +45,31 @@ Car::Car(string nom, int carOrientation, Course * CX, CrossingLight *CL) {
 
 
 // Rouler
-void Car::drive(){
+void Car::drive() {
     verrou_parcours.lock();
-    position=course->reactualiser(name, position);
+    position = course->reactualiser(name, position);    // passer la pos actuelle voiture, retourne position après actu
     verrou_parcours.unlock();
 
     while (position < 100){
         if (position == 6){
             std::unique_lock<std::mutex> monlock(arret_carrefour);
-            while ((crossingLight->getCouleur() == "R")){
-                //std::unique_lock<std::mutex> monlock(arret_carrefour);
+            while ((crossingLight->getCouleur() == "R")) {
                 displayLock.lock();
                 cout << "---------- " << name << " est bloquée devant le carrefour car le feu est rouge" << endl;
                 displayLock.unlock();
                 CV[orientation].wait(monlock);
                 displayLock.lock();
                 cout << "-------------------- " << name << " est libérée et va rentrer dans le carrefour" << endl;
-                //_maPosition=_monParcours->reactualiser(_nom,_maPosition);
                 displayLock.unlock();
             }
-            int attente = rand()%30; //simule un temps de réaction long pour entrer dans le carrefour
+            int attente = rand()%30; // Temps rentrer carrefour
             std::this_thread::sleep_for(std::chrono::milliseconds(attente));
-
         }
 
         int attente = rand()%200;
         std::this_thread::sleep_for(std::chrono::milliseconds(attente));
         verrou_parcours.lock();
-        position=course->reactualiser(name, position);
+        position = course->reactualiser(name, position);
         verrou_parcours.unlock();
     }
 }

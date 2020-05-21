@@ -93,7 +93,7 @@ void CrossingLightManagement::detecter() {
             cout <<"\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> état 1:  FLUX B bloqué et on libère FLUX A ->  FEU A imposé à VERT \n"  << endl;
             crossingLight[0].update("V");
             state = 2;
-            CV[0].notify_all();                     // Que fait-il?
+            CV[0].notify_all();                     // Notification voiture (selon orientation)
             displayLock.unlock();
         } else
 

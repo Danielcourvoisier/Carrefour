@@ -14,7 +14,7 @@
 using namespace std;
 
 // Variables globales
-extern std::mutex displayLock;
+extern std::recursive_mutex displayLock;
 
 
 // Classe TrafficLight

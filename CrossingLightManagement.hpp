@@ -15,7 +15,7 @@
 #include "Crossroads.hpp"
 
 // Variables globales
-extern std::mutex displayLock;
+extern std::recursive_mutex displayLock;
 
 
 // Classe CrossingLightManagement

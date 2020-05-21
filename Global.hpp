@@ -12,7 +12,7 @@
 //bool inActivity = true;
 
 // Mutex globaux
-recursive_mutex displayLock;
+std::recursive_mutex displayLock;
 std::mutex arret_carrefour;
 std::mutex verrou_parcours;
 std::condition_variable CV[2]; // changer nom lors de l'implémentation
